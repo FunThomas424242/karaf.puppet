@@ -6,4 +6,4 @@ Exec=lxterminal -e bin/karaf
 Terminal=false
 StartupNotify=false
 Categories=Development;IDE;Java;
-Path=@_homeDir/@_libName
+Path=<%= @_homeDir/@_libName =>
