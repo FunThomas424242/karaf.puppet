@@ -1,4 +1,4 @@
 karaf.puppet
 ============
 
-Puppet Modul to install karaf, for details of module description read the [readme | ./karaf/README.md] of module.
+Puppet Modul to install karaf, for details read the module description at [Readme](./karaf/README.md).

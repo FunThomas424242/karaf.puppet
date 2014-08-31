@@ -1,16 +1,33 @@
-karaf
+# Karaf module for Puppet #
 
-This is the karaf module.
+This module installs Karaf.
 
-License
--------
+## Description
+
+This module can install Karaf in a simple way.
+
+Currently supports:
+
+* Ubuntu 14.04.
+
+## Usage
+
+General install with:
+
+	class { 'karaf':
+		user => 'your_local_login'
+	}
 
 
-Contact
--------
+## License
+[LGPL v3 ff](http://www.gnu.org/licenses/lgpl-3.0.de.html)
 
 
-Support
--------
+## Contact
 
-Please log tickets and issues at our [Projects site](http://projects.example.com)
+
+
+## Support
+
+
+Please log tickets and issues at our [Projects site](https://github.com/FunThomas424242/karaf.puppet)
