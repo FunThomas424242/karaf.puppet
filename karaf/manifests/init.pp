@@ -45,9 +45,9 @@
 
 
 class karaf {
-#	$user = 'huluvu424242'
+	$homeDir = "/home/huluvu424242"
 	$libName = 'apache-karaf-3.0.1'
-	$targetDir =  '/home/huluvu424242/$libName/'
+	$targetDir =  "$homeDir/$libName"
         $tmpDir = '/tmp'
 	$srcURL = 'http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-3.0.1.tar.gz'
 
@@ -58,9 +58,7 @@ class karaf {
 #	    group => www-data
 	}
 
-	
-
-	archive { 'apache-karaf-3.0.1':
+	archive { $libName:
 	  ensure => present,
 	  url    => $src,
 	  src_target => $tmpDir,
@@ -69,6 +67,23 @@ class karaf {
           require => File[$targetDir],
 	  #require => [File[$targetDir], Package['archive']],
 	}
+
+	file { $starterFile:
+		ensure => present,
+		path => "$homeDir/Schreibtisch/karaf.desktop",
+		content => "[Desktop Entry]
+Type=Application
+Name=Karaf 3.0.1
+Comment=Apache Karaf OSGi Framework
+Exec=lxterminal -e bin/karaf
+Terminal=false
+StartupNotify=false
+Categories=Development;IDE;Java;
+Path=/home/huluvu424242/apache-karaf-3.0.1
+",
+	}
+
+
 
 }
 
