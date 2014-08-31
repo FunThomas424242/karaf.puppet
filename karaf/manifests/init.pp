@@ -105,7 +105,7 @@ class karaf  (
 	file { 'karaf.desktop':
 		ensure => file,
 		path => "$_homeDir/Schreibtisch/karaf.desktop",
-		content =>template('karaf/Karaf'),
+		content => template('karaf/karaf.desktop.erb'),
 		require => Archive[$_libName],
 	}
 }
