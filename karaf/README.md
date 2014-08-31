@@ -14,9 +14,11 @@ Currently supports:
 
 General install with:
 
-	class { 'karaf':
-		user => 'your_local_login'
-	}
+     class { 'karaf':
+	user => 'huluvu424242',
+	karafVersion => '3.0.1',
+	tmpDir => '/tmp',
+     }
 
 
 ## License
