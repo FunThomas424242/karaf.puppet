@@ -36,30 +36,75 @@
 # Copyright 2014  Thomas Schubert (FunThomas424242), initial project owner
 #
 
-class karaf {
-	$nutzer = 'huluvu424242'
-	$karafVersion = '3.0.1'
-	$homeDir = "/home/$nutzer"
-	$libName = "apache-karaf-$karafVersion"
-	$targetDir =  "$homeDir"
-        $tmpDir = '/tmp'
-	$srcURL = "http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-$karafVersion.tar.gz"
+class karaf  (
+	$user 				= 'huluvu424242',
+	$karafVersion 	= '3.0.1',
+        $tmpDir 			= '/tmp',
+	$srcURL 			= undef,
+	$homeDir 			= undef,
+	$libName			= undef,
+	$targetDir 		=  undef,
+){
+ 
+	# init srcURL
+	if $srcURL == undef {
+        	$_srcURL = "http://mirror.lwnetwork.org.uk/APACHE/karaf/$karafVersion/apache-karaf-$karafVersion.tar.gz"
+      	}
+      	else {
+        	$_srcURL = $srcURL
+      	}
 
-	notice( "The value is: $libName")
+	# init homeDir
+	if $homeDir == undef {
+        	$_homeDir = "/home/$user"
+      	}
+      	else {
+        	$_homeDir = $homeDir
+      	}
 
-	archive { $libName:
+	# init libName
+	if $libName == undef {
+        	$_libName = "apache-karaf-$karafVersion"
+      	}
+      	else {
+        	$_libName = $libName
+      	}
+
+	# init targetDir
+	if $targetDir == undef {
+        	$_targetDir = "$_homeDir"
+      	}
+      	else {
+        	$_targetDir = $targetDir
+      	}
+
+
+	notice( "_srcURL: $_srcURL")
+	notice( "_homeDir: $_homeDir")
+	notice( "_libName: $_libName")
+	notice( "_targetDir: $_targetDir")
+
+	file { $tmpDir:
+		ensure => directory,
+		#mode => 666,
+		# owner => www-data,
+		# group => www-data
+	}
+
+
+	archive { $_libName:
 	  ensure => present,
-	  url    => $srcURL,
+	  url    => $_srcURL,
 	  src_target => $tmpDir,
-	  target => $targetDir,
+	  target => $_targetDir,
 	  checksum => false,
-          #require => File[$targetDir],
-	  #require => [File[$targetDir], Package['archive']],
+          require => File[$tmpDir],
+	  #require => [File[$_targetDir], Package['archive']],
 	}
 
 	file { $starterFile:
 		ensure => present,
-		path => "$homeDir/Schreibtisch/karaf.desktop",
+		path => "$_homeDir/Schreibtisch/karaf.desktop",
 		content => "[Desktop Entry]
 Type=Application
 Name=Karaf
@@ -68,13 +113,14 @@ Exec=lxterminal -e bin/karaf
 Terminal=false
 StartupNotify=false
 Categories=Development;IDE;Java;
-Path=$homeDir/$libName
+Path=$_homeDir/$_libName
 ",
-	 require => Archive[$libName],
+	 require => Archive[$_libName],
 	}
-
-
-
 }
 
-include karaf
+class { 'karaf':
+	user => 'huluvu424242',
+	karafVersion => '3.0.1',
+	tmpDir => '/tmp',
+}
