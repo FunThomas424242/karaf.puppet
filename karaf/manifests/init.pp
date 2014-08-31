@@ -29,27 +29,23 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Thomas Schubert (FunThomas424242) <funthomas424242@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014  Thomas Schubert (FunThomas424242), initial project owner
 #
 
 class karaf {
 	$nutzer = 'huluvu424242'
+	$karafVersion = '3.0.1'
 	$homeDir = "/home/$nutzer"
-	$libName = 'apache-karaf-3.0.1'
+	$libName = "apache-karaf-$karafVersion"
 	$targetDir =  "$homeDir"
         $tmpDir = '/tmp'
-	$srcURL = 'http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-3.0.1.tar.gz'
+	$srcURL = "http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-$karafVersion.tar.gz"
 
-#	file { $targetDir:
-#	    ensure => directory,
-#	    mode => 0700,
-#	}
-
-	notice( "The value is: $targetDir")
+	notice( "The value is: $libName")
 
 	archive { $libName:
 	  ensure => present,
