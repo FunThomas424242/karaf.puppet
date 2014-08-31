@@ -36,35 +36,28 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 
-
-# needs root permissions
-#$packages = [ 'archive' ]
-#package { $packages:
-#	ensure => installed,
-#}
-
-
 class karaf {
-	$homeDir = "/home/huluvu424242"
+	$nutzer = 'huluvu424242'
+	$homeDir = "/home/$nutzer"
 	$libName = 'apache-karaf-3.0.1'
-	$targetDir =  "$homeDir/$libName"
+	$targetDir =  "$homeDir"
         $tmpDir = '/tmp'
 	$srcURL = 'http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-3.0.1.tar.gz'
 
-	file { $targetDir:
-	    ensure => directory,
-	    mode => 666,
-#	    owner => www-data,
-#	    group => www-data
-	}
+#	file { $targetDir:
+#	    ensure => directory,
+#	    mode => 0700,
+#	}
+
+	notice( "The value is: $targetDir")
 
 	archive { $libName:
 	  ensure => present,
-	  url    => $src,
+	  url    => $srcURL,
 	  src_target => $tmpDir,
 	  target => $targetDir,
 	  checksum => false,
-          require => File[$targetDir],
+          #require => File[$targetDir],
 	  #require => [File[$targetDir], Package['archive']],
 	}
 
@@ -73,14 +66,15 @@ class karaf {
 		path => "$homeDir/Schreibtisch/karaf.desktop",
 		content => "[Desktop Entry]
 Type=Application
-Name=Karaf 3.0.1
+Name=Karaf
 Comment=Apache Karaf OSGi Framework
 Exec=lxterminal -e bin/karaf
 Terminal=false
 StartupNotify=false
 Categories=Development;IDE;Java;
-Path=/home/huluvu424242/apache-karaf-3.0.1
+Path=$homeDir/$libName
 ",
+	 require => Archive[$libName],
 	}
 
 
