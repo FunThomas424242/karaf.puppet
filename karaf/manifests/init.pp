@@ -35,9 +35,20 @@
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class karaf {
 
-	$targetDir =  '/home/huluvu424242/Download/'
+
+# needs root permissions
+#$packages = [ 'archive' ]
+#package { $packages:
+#	ensure => installed,
+#}
+
+
+class karaf {
+#	$user = 'huluvu424242'
+	$libName = 'apache-karaf-3.0.1'
+	$targetDir =  '/home/huluvu424242/$libName/'
+        $tmpDir = '/tmp'
 	$srcURL = 'http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-3.0.1.tar.gz'
 
 	file { $targetDir:
@@ -47,14 +58,16 @@ class karaf {
 #	    group => www-data
 	}
 
+	
+
 	archive { 'apache-karaf-3.0.1':
 	  ensure => present,
 	  url    => $src,
-	  src_target => '/tmp',
+	  src_target => $tmpDir,
 	  target => $targetDir,
-	#  follow_redirects => true,
 	  checksum => false,
-	  require => File[ $targetDir],
+          require => File[$targetDir],
+	  #require => [File[$targetDir], Package['archive']],
 	}
 
 }
