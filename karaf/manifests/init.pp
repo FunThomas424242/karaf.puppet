@@ -37,23 +37,25 @@
 #
 class karaf {
 
-	$destination= '/home/huluvu424242/Download/apache-karaf-3.0.1.tar.gz'
-	$src= 'http://mirror.dkd.de/apache/karaf/3.0.1/apache-karaf-3.0.1-src.tar.gz'
+	$targetDir =  '/home/huluvu424242/Download/'
+	$srcURL = 'http://mirror.lwnetwork.org.uk/APACHE/karaf/3.0.1/apache-karaf-3.0.1.tar.gz'
 
-	file { "/home/huluvu424242/Download":
+	file { $targetDir:
 	    ensure => directory,
 	    mode => 666,
 #	    owner => www-data,
 #	    group => www-data
 	}
 
-	wget::fetch { $src:
-	  destination =>$destination,
-	  timeout     => 0,
-	  verbose     => false,
-	  require 	=> file["/home/huluvu424242/Download"],
+	archive { 'apache-karaf-3.0.1':
+	  ensure => present,
+	  url    => $src,
+	  src_target => '/tmp',
+	  target => $targetDir,
+	#  follow_redirects => true,
+	  checksum => false,
+	  require => File[ $targetDir],
 	}
-
 
 }
 
