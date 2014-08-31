@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Karaf 3.0.1
+Name=Karaf
 Comment=Apache Karaf OSGi Framework
 Exec=lxterminal -e bin/karaf
 Terminal=false
 StartupNotify=false
 Categories=Development;IDE;Java;
-Path=/home/huluvu424242/apache-karaf-3.0.1
+Path=@_homeDir/@_libName

@@ -102,25 +102,12 @@ class karaf  (
 	  #require => [File[$_targetDir], Package['archive']],
 	}
 
-	file { $starterFile:
-		ensure => present,
+	file { 'karaf.desktop':
+		ensure => file,
 		path => "$_homeDir/Schreibtisch/karaf.desktop",
-		content => "[Desktop Entry]
-Type=Application
-Name=Karaf
-Comment=Apache Karaf OSGi Framework
-Exec=lxterminal -e bin/karaf
-Terminal=false
-StartupNotify=false
-Categories=Development;IDE;Java;
-Path=$_homeDir/$_libName
-",
-	 require => Archive[$_libName],
+		content =>template('karaf/Karaf'),
+		require => Archive[$_libName],
 	}
 }
 
-class { 'karaf':
-	user => 'huluvu424242',
-	karafVersion => '3.0.1',
-	tmpDir => '/tmp',
-}
+
