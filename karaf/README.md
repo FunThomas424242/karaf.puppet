@@ -12,10 +12,10 @@ Currently supports:
 
 ## Usage
 
-General install with:
+General install with puppet in a manifest.pp file:
 
      class { 'karaf':
-     	   user => 'huluvu424242',
+     	   user => 'your_local_login',
 	   karafVersion => '3.0.1',
 	   tmpDir => '/tmp',
      }
