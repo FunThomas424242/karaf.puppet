@@ -38,7 +38,7 @@
 class karaf {
 
 	$destination= '/home/huluvu424242/Download/apache-karaf-3.0.1.tar.gz'
-	$src='http://mirror.dkd.de/apache/karaf/3.0.1/apache-karaf-3.0.1-src.tar.gz'
+	$src= 'http://mirror.dkd.de/apache/karaf/3.0.1/apache-karaf-3.0.1-src.tar.gz'
 
 	file { "/home/huluvu424242/Download":
 	    ensure => directory,
