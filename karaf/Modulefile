@@ -1,4 +1,4 @@
-name    'funthomas-karaf'
+name    'funthomas424242-karaf'
 version '0.1.0'
 source 'https://github.com/FunThomas424242/karaf.puppet.git'
 author 'Thomas Schubert (FunThomas424242)'
