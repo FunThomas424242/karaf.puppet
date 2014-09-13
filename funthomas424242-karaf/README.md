@@ -15,9 +15,9 @@ Currently supports:
 General install with puppet in a manifest.pp file:
 
      class { 'karaf':
-     	   user => 'your_local_login',
-	   karafVersion => '3.0.1',
-	   tmpDir => '/tmp',
+           user => 'your_local_login',
+           karafVersion => '3.0.1',
+           tmpDir => '/tmp',
      }
 
 
