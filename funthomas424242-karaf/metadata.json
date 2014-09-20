@@ -5,15 +5,14 @@
       "operatingsystemrelease": [
         "14.04"
       ]
-    },
+    }
   ],
   "name": "funthomas424242-karaf",
   "version": "0.1.0",
   "source": "https://github.com/FunThomas424242/karaf.puppet.git",
   "author": "FunThomas424242 (Thomas Schubert)",
   "license": "GNU LGPL v3",
-  "summary": "Karaf Module",
-  "description": "Install Apache Karaf",
+  "summary": "Module to install Apache Karaf",
   "project_page": "https://github.com/FunThomas424242/karaf.puppet",
   "dependencies": [
     {
