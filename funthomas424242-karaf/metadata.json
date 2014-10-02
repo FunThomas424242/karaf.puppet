@@ -8,7 +8,7 @@
     }
   ],
   "name": "funthomas424242-karaf",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "source": "https://github.com/FunThomas424242/karaf.puppet.git",
   "author": "FunThomas424242 (Thomas Schubert)",
   "license": "GNU LGPL v3",
